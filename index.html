@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Javascript</title>
+	<style>
+		#para {
+			font-size:25px;
+			font-family:sans-serif;
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<p id="para">Monday</p>
+	Enter day index:<input type="number" id="inp1" onKeyUp="cal()" value="1" placeholder="1-7">
+	
+	<script type="text/javascript">
+		function cal()
+		{
+			var day= parseInt(document.getElementById("inp1").value);
+			
+			if(day>7 || day<1)
+			{
+				document.getElementById("inp1").value = 1;
+				day=1;
+			}
+			
+			
+			switch(day)
+			{
+				case 1: show("Monday");
+				break;
+				case 2: show("Tuesday");
+				break;
+				case 3: show("Wednesday");
+				break;
+				case 4: show("Thursday");
+				break;
+				case 5: show("Friday");
+				break;
+				case 6: show("Saturday");
+				break;
+				case 7: show("Sunday");
+				break;
+				default: show("Enter a number");
+			}
+		}
+		
+		function show(b)
+		{
+			document.getElementById("para").innerHTML=b;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="social-id" content="Gaming Flash#6019 -discord"/>
+    <title>Document</title>
+    <style>
+        .tcontainer {
+            font-family:Sans-serif;
+            margin:10px;
+            padding:20px;
+            border-radius:10px;
+            border: solid black 2px;
+            text-align: center;
+        }
+        .heading2 {
+            font-family:cursive;
+            font-size:30px;
+        }
+        .bold1 {
+            font-weight:800;
+        }
+        
+        #btn1 {
+            font-family:sans-serif;
+            /*
+            font-weight:bold;
+            */
+            text-transform:uppercase;
+            font-size:15px;
+            background-color:#eee;
+            border-radius:6px;
+            padding:5px 10px;
+            margin-top:5px;
+        }
+        
+        .non-clickable {
+            color:#bbb;
+            border:1px solid #ccc;
+        }
+        
+        .shadow {
+            box-shadow:0 0 3px #ccc inset ;
+            color:black;
+            border:1px solid #aaa;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="tcontainer">
+        <span class="heading2">Terms & Conditions</span>
+        <br><br>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis excepturi molestiae, inventore impedit natus. Quidem nam voluptates itaque architecto dolore explicabo repellendus natus dolores, facilis nostrum! Eveniet, ipsa. Quaerat, molestiae?
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis ad architecto provident aperiam placeat. Reprehenderit, omnis accusamus eum possimus enim dolorem, nulla pariatur perferendis debitis voluptate, nisi repudiandae at. Laborum!
+    <br> <br>
+    <span class="bold1">I agree your Terms and conditions</span>
+    <input type="checkbox" id="cb1" onClick="verify()" /><br>
+    
+    <input type="button" id="btn1" class="non-clickable" disabled="" value="continue" onClick="say()"/>
+    
+    </div>
+    
+    <script type="text/javascript">
+        function verify() {
+            if(cb1.checked == true)
+            {
+                document.getElementById("btn1").removeAttribute("disabled")
+                document.getElementById("btn1").setAttribute("class","shadow")
+            }
+            else
+            {
+                document.getElementById("btn1").setAttribute("disabled","")
+                document.getElementById("btn1").setAttribute("class","non-clickable")
+            }
+        }
+        
+        function say(){
+            alert("Access Granted");
+        }
+    </script>
+    
+</body>
+</html>

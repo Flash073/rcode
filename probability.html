@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Probability</title>
+	<style>
+		
+		body {
+			font-family:sans-serif;
+		}
+		
+		.wrapper {
+			background-color:rgba(69,69,69,0.36);
+			border:1px solid black;
+			border-radius:5px;
+			padding:10px;
+		}
+		.main {
+			transition:0.25s;
+		}
+		table {
+			border-collapse:collapse;
+			min-width:100%;
+		}
+		th,td {
+			/*
+			background-color:white;
+			width:70px;
+			*/
+			text-align: center;
+		}
+		input[type=text],[type=button] {
+			font-family:monospace;
+		}
+		.align {
+			/*
+			border:1px solid black;
+			*/
+			display:inline-block;
+			vertical-align: top;
+			
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<b>Input X<sub>i</sub> :</b><input type="text" id="xinput" placeholder="{0,1,2,3,4,...}" value="{0,1,2,3}"/> <br>
+		<b>Input P<sub>i</sub> :</b><input type="text" id="pinput" placeholder="{0,1,2,3,4,...}" value="{0,1,2,3}"/> <br>
+		<input type="button" value="calculate" onClick="cal();">
+		<br>
+	</div>
+	<br>
+	
+	
+	<div id="table" class="main">
+			<!--
+		<table border="1">
+			<tr>
+				<th>X<sub>i</sub></th>
+				<th>P<sub>i</sub></th>
+				<th>X<sub>i</sub>P<sub>i</sub></th>
+				<th>X<sub>i</sub><sup>2</sup></th>
+				<th>P<sub>i</sub>X<sub>i</sub><sup>2</sup></th>
+			</tr>
+		</table>
+			-->
+	</div>
+	<div id="detailed_ans">
+		<dl>
+			<dh><u><li>Mean</li></u></dh>
+			<dd>E(x) <span class="align">= &sum; XiPi <br>=</span></dd>
+			
+		</dl>
+	</div>
+	
+	
+	
+	<script type="text/javascript">
+		var xi=[], pi=[] ,startpot="";
+		
+		function cal(){
+			document.getElementById("xinput").value=document.getElementById("xinput").value.trim();
+			document.getElementById("pinput").value=document.getElementById("pinput").value.trim();
+		
+		
+			var x_input= document.getElementById("xinput").value;
+			
+			for(i=0,xi=[],startpot="";i<x_input.length;i++){
+				if(x_input.charAt(i)=="{" || x_input.charAt(i)=="," || x_input.charAt(i)=="}"){
+					if(startpot==""){
+						var startpot = i+1;
+					}
+					else{
+						var endpot = i;
+						xi.push(x_input.substring(startpot,endpot));
+						startpot=i+1;
+					//	console.log(xi);
+					}
+				}
+			}
+			
+			
+			
+			var p_input= document.getElementById("pinput").value;
+			
+			for(i=0,pi=[],startpot="";i<p_input.length;i++){
+				if(p_input.charAt(i)=="{" || p_input.charAt(i)=="," || p_input.charAt(i)=="}"){
+					if(startpot==""){
+						var startpot = i+1;
+					}
+					else{
+						var endpot = i;
+						pi.push(p_input.substring(startpot,endpot));
+						startpot=i+1;
+					//	console.log(xi);
+					}
+				}
+			}
+			
+			
+			ins();
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		function ins(){
+			var tempstr= '<table border="1"><tr><th>X<sub>i</sub></th><th>P<sub>i</sub></th><th>X<sub>i</sub>P<sub>i</sub></th><th>X<sub>i</sub><sup>2</sup></th><th>P<sub>i</sub>X<sub>i</sub><sup>2</sup></th></tr>';
+			
+			for(i=0;i<xi.length;i++){
+		//		alert("hi");
+				tempstr= tempstr + '<tr><td>'+xi[i]+'</td><td>'+pi[i]+'</td><td>'+xi[i]*pi[i]+'</td><td>'+xi[i]*xi[i]+'</td><td>'+(pi[i]*xi[i]*xi[i])+'</td></tr>';
+			}
+			tempstr=tempstr +'<tr><td></td><td></td><td>&sum;xipi='+xipi()+'</td><td></td><td>&sum;pixi<sup>2</sup>='+xipi2()+'</td></tr>';
+			tempstr=tempstr +"</table>";
+			document.getElementById("table").innerHTML=tempstr;
+		}
+		/*
+		*/
+		function xipi(){
+			var xipi=0;
+			xi.forEach(function(value,index){
+				xipi=xipi+ (value*pi[index]);
+			})
+			return xipi;
+		}
+		
+		function xipi2(){
+			var xipi2=0;
+			xi.forEach(function(value,index){
+				xipi2=xipi2+ (value*value*pi[index]);
+			})
+			return xipi2;
+		}
+	</script>
+</body>
+</html>
